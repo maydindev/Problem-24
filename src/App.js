@@ -1,6 +1,15 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { useRef } from 'react'
+
 
 export default function LandingPage() {
+  const pricingRef = useRef(null)
+
+  const handleScrollToPricing = () => {
+    if(pricingRef.current) {
+      pricingRef.current.scrollIntoView({behavior:"smooth"})
+    }
+  }
   // "Fiyatlandırmaya gidin" tıklandığında kaydırma işlemi yumuşak bir şekilde gerçekleşmesi gerekiyor
   return (
     <>
@@ -29,7 +38,8 @@ export default function LandingPage() {
                 fugiat aliqua.
               </p>
               <div className='mt-10 flex items-center justify-center'>
-                <button className='rounded-md bg-indigo-600 px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+                <button className='rounded-md bg-indigo-600 px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                onClick={handleScrollToPricing}>
                   Fiyatlandırmaya gidin
                 </button>
               </div>
@@ -37,7 +47,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-      <div className='py-24'>
+      <div ref={pricingRef}className='py-24'>
         <div className='mx-auto max-w-7xl px-6 lg:px-8'>
           <div className='mx-auto max-w-4xl text-center'>
             <h2 className='text-base font-semibold leading-7 text-indigo-600'>
